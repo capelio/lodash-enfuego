@@ -43,3 +43,9 @@ Returns `true` or `false`.
 ## .hasNumber(object, 'path.to.property')
 
 Returns `true` or `false`.
+
+## .setPath(object, 'path.to.property', value)
+
+Recusively create a path on an object, setting the value of the final property to `value`. If `value` is excluded then `null` will be used as the final property value.
+
+Returns `true` or `false`.

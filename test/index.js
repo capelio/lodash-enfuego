@@ -30,3 +30,96 @@ test('hasNumber', function (t) {
   t.false(_.hasNumber(fixture, 'deep.object.foo'), 'Cannot find non-existant deep number');
   t.end();
 });
+
+test('setPath', function (t) {
+  t.test('empty object', function (tt) {
+    var object = {};
+
+    var expectation = {
+      value: true
+    };
+
+    _.setPath(object, 'value', true);
+
+    tt.deepEqual(object, expectation, 'Sets the value');
+    tt.end();
+  });
+
+  t.test('shallow object', function (tt) {
+    var object = {
+      foo: 'bar'
+    };
+
+    var expectation = {
+      foo: 'bar',
+      value: true
+    };
+
+    _.setPath(object, 'value', true);
+
+    tt.deepEqual(object, expectation, 'Sets the value');
+    tt.end();
+  });
+
+  t.test('deep object', function (tt) {
+    var object = {
+      deep: {
+        foo: 'bar'
+      }
+    };
+
+    var expectation = {
+      deep: {
+        foo: 'bar'
+      },
+      another: {
+        value: true
+      }
+    };
+
+    _.setPath(object, 'another.value', true);
+
+    tt.deepEqual(object, expectation, 'Sets the value');
+    tt.end();
+  });
+
+  t.test('deep object with existing property', function (tt) {
+    var object = {
+      deep: {
+        object: {
+          foo: 'bar'
+        }
+      }
+    };
+
+    var expectation = {
+      deep: {
+        object: {
+          foo: 'bar',
+          value: true
+        }
+      }
+    };
+
+    _.setPath(object, 'deep.object.value', true);
+
+    tt.deepEqual(object, expectation, 'Sets the value');
+    tt.end();
+  });
+
+  t.test('shallow object without value', function (tt) {
+    var object = {
+      foo: 'bar'
+    };
+
+    var expectation = {
+      foo: 'bar',
+      value: null
+    };
+
+    _.setPath(object, 'value');
+
+    tt.deepEqual(object, expectation, 'Sets a null value');
+    tt.end();
+  });
+});
