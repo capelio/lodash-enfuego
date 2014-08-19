@@ -2,7 +2,7 @@
   "name": "lodash-enfuego",
   "version": "1.0.0",
   "description": "Node.JS lodash mixins",
-  "main": "lodash/index.js",
+  "main": "lib/index.js",
   "author": "C. Corey Capel <corey@capelio.com> (http://www.capelio.com)",
   "license": "ISC",
   "bugs": {
